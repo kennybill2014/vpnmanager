@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<antinatconfig>
+	<interface value="172.0.0.1">
+    <port value="0">
+    <maxbindwait value="10">
+    <authchoice>
+        <select mechanism="anonymous">
+    </authchoice>
+</antinatconfig>

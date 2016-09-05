@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>PacketProcessor.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>PacketTunnel.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>PotatsoBase.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>vpnManager.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>A7AF6B611D3E79ED00C58725</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A7CE683E1D3E38CA000ED9D8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A7CE685C1D3E38E6000ED9D8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A7CE68721D3E3C1B000ED9D8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A7CE68841D3E3C25000ED9D8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

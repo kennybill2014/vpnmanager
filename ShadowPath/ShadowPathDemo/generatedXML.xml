@@ -1,0 +1,7 @@
+<antinatconfig><interface><value>172.0.0.1</value></interface><port><value>0</value></port><maxbindwait><value>10</value></maxbindwait><authchoice><select><mechanism>anonymous</mechanism></select></authchoice><chain><name>shadowsocks proxy name</name><uri><value>socks5://127.0.0.1:${ssport}</value></uri><authscheme><value>anonymous</value></authscheme></chain><filter><accept></accept></filter></antinatconfig>
+
+
+
+
+
+
