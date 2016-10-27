@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <antinatconfig>
     <interface value="127.0.0.1">
-    <port value="8880">
+    <port value="0">
     <maxbindwait value="10">
     <chain name="shadowsocks proxy name">
     <uri value="socks5://127.0.0.1:${ssport}">

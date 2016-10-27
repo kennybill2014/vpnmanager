@@ -42,4 +42,22 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark - 用户方法,将NSLog的输出信息写入到文件中
+/* 将NSlog打印信息保存到Document目录下的文件中 */
+- (void)redirectLogToDocumentFolder
+{
+    // 获取沙盒路径
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *documentDirectory = [paths objectAtIndex:0];
+    // 获取打印输出文件路径
+    NSString *fileName = [NSString stringWithFormat:@"myData.log"];
+    NSString *logFilePath = [documentDirectory stringByAppendingPathComponent:fileName];
+    // 先删除已经存在的文件
+    NSFileManager *defaultManager = [NSFileManager defaultManager];
+    [defaultManager removeItemAtPath:logFilePath error:nil];
+    // 将NSLog的输出重定向到文件，因为C语言的printf打印是往stdout打印的，这里也把它重定向到文件
+    freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding],"a+", stdout);
+    freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding],"a+", stderr);
+}
+
 @end

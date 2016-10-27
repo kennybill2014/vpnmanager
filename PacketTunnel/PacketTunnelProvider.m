@@ -15,11 +15,12 @@
 #import <sys/socket.h>
 #import <arpa/inet.h>
 #import "MMWormhole.h"
+//#import <ShadowPath/ShadowPath.h>
 //@import MMWormhole;
 @import CocoaAsyncSocket;
 
 @interface PacketTunnelProvider () <GCDAsyncSocketDelegate>
-@property (nonatomic) MMWormhole *wormhole;
+//@property (nonatomic) MMWormhole *wormhole;
 @property (nonatomic) GCDAsyncSocket *statusSocket;
 @property (nonatomic) GCDAsyncSocket *statusClientSocket;
 @property (nonatomic) BOOL didSetupHockeyApp;
@@ -100,7 +101,7 @@
 }
 
 - (void)setupWormhole {
-    self.wormhole = [[MMWormhole alloc] initWithApplicationGroupIdentifier:@"group.360.freewifi" optionalDirectory:@"wormhole"];
+   /* self.wormhole = [[MMWormhole alloc] initWithApplicationGroupIdentifier:@"group.360.freewifi" optionalDirectory:@"wormhole"];
     __weak typeof(self) weakSelf = self;
     [self.wormhole listenForMessageWithIdentifier:@"getTunnelStatus" listener:^(id  _Nullable messageObject) {
         [weakSelf.wormhole passMessageObject:@"ok" identifier:@"tunnelStatus"];
@@ -109,8 +110,8 @@
         [weakSelf stop];
     }];
     [self.wormhole listenForMessageWithIdentifier:@"getTunnelConnectionRecords" listener:^(id  _Nullable messageObject) {
-        NSMutableArray *records = [NSMutableArray array];/*
-        struct log_client_states *p = log_clients;
+        NSMutableArray *records = [NSMutableArray array];
+      /*  struct log_client_states *p = log_clients;
         while (p) {
             struct client_state *client = p->csp;
             NSMutableDictionary *d = [NSMutableDictionary dictionary];
@@ -141,10 +142,10 @@
             d[@"responseCode"] = @(client->http->status);
             [records addObject:d];
             p = p->next;
-        }*/
+        }
         NSString *result = [records jsonString];
         [weakSelf.wormhole passMessageObject:result identifier:@"tunnelConnectionRecords"];
-    }];
+    }];*/
     [self setupStatusSocket];
 }
 
@@ -174,6 +175,7 @@
         exit(1);
         return;
     }
+    
     dispatch_group_enter(g);
     NSLog(@"starting http proxy....");
     [[ProxyManager sharedManager] startHttpProxy:^(int port, NSError *error) {
@@ -231,12 +233,18 @@
         dnsServers = [DNSConfig getSystemDnsServers];
         NSLog(@"system dns servers: %@", dnsServers);
     }
+    // excludedRoutes包含了一些IP走原来的路径出去，不经过vpn。
     NSMutableArray *excludedRoutes = [NSMutableArray array];
+    for (NSString *server in dnsServers) {
+        [excludedRoutes addObject:[[NEIPv4Route alloc] initWithDestinationAddress:[server stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] subnetMask:@"255.255.255.255"]];
+    }
     [excludedRoutes addObject:[[NEIPv4Route alloc] initWithDestinationAddress:@"192.168.0.0" subnetMask:@"255.255.0.0"]];
     [excludedRoutes addObject:[[NEIPv4Route alloc] initWithDestinationAddress:@"10.0.0.0" subnetMask:@"255.0.0.0"]];
     [excludedRoutes addObject:[[NEIPv4Route alloc] initWithDestinationAddress:@"172.16.0.0" subnetMask:@"255.240.0.0"]];
     ipv4Settings.includedRoutes = @[[NEIPv4Route defaultRoute]];
     ipv4Settings.excludedRoutes = excludedRoutes;
+    
+    ipv4Settings.includedRoutes = @[[NEIPv4Route defaultRoute]];
     NEPacketTunnelNetworkSettings *settings = [[NEPacketTunnelNetworkSettings alloc] initWithTunnelRemoteAddress:@"192.0.2.2"];
     settings.IPv4Settings = ipv4Settings;
     settings.MTU = @(TunnelMTU);
@@ -251,7 +259,7 @@
     proxySettings.excludeSimpleHostnames = YES;
     settings.proxySettings = proxySettings;
     NEDNSSettings *dnsSettings = [[NEDNSSettings alloc] initWithServers:dnsServers];
-    dnsSettings.matchDomains = @[@""];
+//    dnsSettings.matchDomains = @[@""];
     settings.DNSSettings = dnsSettings;
     [self setTunnelNetworkSettings:settings completionHandler:^(NSError * _Nullable error) {
         if (error) {

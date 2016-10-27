@@ -11,6 +11,7 @@
 @interface ViewController : UIViewController
 
 - (IBAction)onBtnAction:(id)sender;
+- (IBAction)getiplist:(id)sender;
 
 @end
 

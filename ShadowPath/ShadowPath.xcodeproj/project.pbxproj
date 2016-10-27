@@ -504,16 +504,6 @@
 		B82847A71CEB11F600820456 /* get.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = get.c; sourceTree = "<group>"; };
 		B82847A91CEB11F600820456 /* pcre.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pcre.c; sourceTree = "<group>"; };
 		B82847AE1CEB125500820456 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		B82847B71CEB14B000820456 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B82847B91CEB14B000820456 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		B82847BA1CEB14B000820456 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B82847BC1CEB14B000820456 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B82847BD1CEB14B000820456 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		B82847C01CEB14B000820456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B82847C21CEB14B000820456 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B82847C51CEB14B000820456 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B82847C71CEB14B000820456 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B82847CC1CEB168400820456 /* config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = config; sourceTree = "<group>"; };
 		B82D7D491CEC6BCE00357F5F /* an_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = an_core.h; sourceTree = "<group>"; };
 		B82D7D4A1CEC6BCE00357F5F /* an_core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = an_core.m; sourceTree = "<group>"; };
 		B82D7D4B1CEC6BCE00357F5F /* an_direct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = an_direct.m; sourceTree = "<group>"; };
@@ -877,31 +867,6 @@
 			path = pcre;
 			sourceTree = "<group>";
 		};
-		B82847B51CEB14B000820456 /* ShadowPathDemo */ = {
-			isa = PBXGroup;
-			children = (
-				B82847B61CEB14B000820456 /* Supporting Files */,
-				B82847B91CEB14B000820456 /* AppDelegate.h */,
-				B82847BA1CEB14B000820456 /* AppDelegate.m */,
-				B82847C21CEB14B000820456 /* Assets.xcassets */,
-				B82847C71CEB14B000820456 /* Info.plist */,
-				B82847C41CEB14B000820456 /* LaunchScreen.storyboard */,
-				B82847BF1CEB14B000820456 /* Main.storyboard */,
-				B82847BC1CEB14B000820456 /* ViewController.h */,
-				B82847BD1CEB14B000820456 /* ViewController.m */,
-				B82847CC1CEB168400820456 /* config */,
-			);
-			path = ShadowPathDemo;
-			sourceTree = "<group>";
-		};
-		B82847B61CEB14B000820456 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B82847B71CEB14B000820456 /* main.m */,
-			);
-			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		B82D7D461CEC6B6300357F5F /* Privoxy */ = {
 			isa = PBXGroup;
 			children = (
@@ -1246,7 +1211,6 @@
 			isa = PBXGroup;
 			children = (
 				B8DEFD7D1CE9C923003FC706 /* ShadowPath */,
-				B82847B51CEB14B000820456 /* ShadowPathDemo */,
 				B8DEFD7C1CE9C923003FC706 /* Products */,
 				B82847AE1CEB125500820456 /* libz.tbd */,
 			);
@@ -1501,11 +1465,13 @@
 		B8DEFD721CE9C923003FC706 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = TouchingApp;
 				TargetAttributes = {
 					B8DEFD7A1CE9C923003FC706 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = SN4R88999J;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -1664,27 +1630,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		B82847BF1CEB14B000820456 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B82847C01CEB14B000820456 /* Base */,
-			);
-			name = Main.storyboard;
-			path = .;
-			sourceTree = "<group>";
-		};
-		B82847C41CEB14B000820456 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B82847C51CEB14B000820456 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			path = .;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		B8DEFD811CE9C923003FC706 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1700,8 +1645,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Ji Ma (V6H8T99MJF)";
@@ -1750,8 +1697,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Ji Ma (V6H8T99MJF)";
@@ -1784,8 +1733,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = SN4R88999J;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1813,8 +1765,9 @@
 					"-DUDPRELAY_LOCAL",
 					"-DMODULE_LOCAL",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.qihoo.freewifi.shadowPath;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vpn.agent.shadowPath;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -1824,7 +1777,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = SN4R88999J;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1852,8 +1808,9 @@
 					"-DUDPRELAY_LOCAL",
 					"-DMODULE_LOCAL",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.qihoo.freewifi.shadowPath;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vpn.agent.shadowPath;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "";
 			};

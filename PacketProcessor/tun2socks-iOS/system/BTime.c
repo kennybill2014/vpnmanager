@@ -41,7 +41,7 @@ struct _BTime_global btime_global = {
 #include <mach/clock.h>
 #include <mach/mach.h>
 
-int clock_gettime(int clk_id, struct timespec* t)
+int clock_gettime2(int clk_id, struct timespec* t)
 {
     clock_serv_t cclock;
     mach_timespec_t mts;

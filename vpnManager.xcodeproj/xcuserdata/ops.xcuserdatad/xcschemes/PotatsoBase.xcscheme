@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0730"
+   LastUpgradeVersion = "0800"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A7CE68841D3E3C25000ED9D8"
+               BlueprintIdentifier = "A7AF6B611D3E79ED00C58725"
                BuildableName = "PotatsoBase.framework"
                BlueprintName = "PotatsoBase"
                ReferencedContainer = "container:vpnManager.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A7CE68841D3E3C25000ED9D8"
+            BlueprintIdentifier = "A7AF6B611D3E79ED00C58725"
             BuildableName = "PotatsoBase.framework"
             BlueprintName = "PotatsoBase"
             ReferencedContainer = "container:vpnManager.xcodeproj">
@@ -63,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A7CE68841D3E3C25000ED9D8"
+            BlueprintIdentifier = "A7AF6B611D3E79ED00C58725"
             BuildableName = "PotatsoBase.framework"
             BlueprintName = "PotatsoBase"
             ReferencedContainer = "container:vpnManager.xcodeproj">

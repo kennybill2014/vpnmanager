@@ -98,7 +98,7 @@
             }else if (proto == IP_PROTO_TCP) {
                 [[TunnelInterface sharedInterface] handleTCPPPacket:packet];
             }
-        }
+        }        
         [weakSelf processPackets];
     }];
     
@@ -135,6 +135,7 @@
     message[0] = packet.length / 256;
     message[1] = packet.length % 256;
     write(self.writeFd , message , packet.length + 2);
+    NSLog(@"handleTCPPPacket  packet length=%lu",(unsigned long)packet.length);
 }
 
 - (void)handleUDPPacket: (NSData *)packet {
@@ -155,10 +156,17 @@
             
             NSData *outData = [[NSData alloc] initWithBytes:data length:data_len];
             struct in_addr dest = { iphdr->dest.addr };
+            struct in_addr src = { iphdr->src.addr };
             NSString *destHost = [NSString stringWithUTF8String:inet_ntoa(dest)];
+            NSString *srcHost = [NSString stringWithUTF8String:inet_ntoa(src)];
             NSString *key = [self strForHost:iphdr->dest.addr port:udphdr->dest];
             NSString *value = [self strForHost:iphdr->src.addr port:udphdr->src];;
             self.udpSession[key] = value;
+            NSString* testData = @"test hello";
+            NSData *outData1 = [testData dataUsingEncoding:NSUTF8StringEncoding];
+            uint16_t port1 = ntohs(udphdr->dest);
+            NSString* udpData= [[NSString alloc] initWithData:outData encoding:NSUTF8StringEncoding];
+            NSLog(@"handleUDPPacket src=%@,dst=%@,data=%@",srcHost,destHost,udpData?:@"");
             [self.udpSocket sendData:outData toHost:destHost port:ntohs(udphdr->dest) withTimeout:30 tag:0];
         } break;
         case 6: {
@@ -168,6 +176,12 @@
 }
 
  - (void)udpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data fromAddress:(NSData *)address withFilterContext:(id)filterContext {
+     //取得发送发的ip和端口
+     NSString *ip = [GCDAsyncUdpSocket hostFromAddress:address];
+     uint16_t port = [GCDAsyncUdpSocket portFromAddress:address];
+     
+     NSString *srcData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+     
  const struct sockaddr_in *addr = (const struct sockaddr_in *)[address bytes];
  ip_addr_p_t dest ={ addr->sin_addr.s_addr };
  in_port_t dest_port = addr->sin_port;
@@ -181,6 +195,12 @@
  int total_len = IP_HLEN + udp_length;
  
  ip_addr_p_t src = {src_ip};
+     
+     struct in_addr dest1 = { addr->sin_addr.s_addr };
+     NSString *srcDest1 = [NSString stringWithUTF8String:inet_ntoa(dest1)];
+     struct in_addr src1 = { src_ip };
+     NSString *srcsrc1 = [NSString stringWithUTF8String:inet_ntoa(src1)];
+     
  struct ip_hdr *iphdr = generateNewIPHeader(IP_PROTO_UDP, dest, src, total_len);
  
  struct udp_hdr udphdr;

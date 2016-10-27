@@ -2103,3 +2103,24 @@ socket-timeout 300
 #
 #
 #
+enable-remote-toggle 0
+enforce-blocks 0
+debug 12288
+#confdir /private/var/mobile/Containers/Shared/AppGroup/472DA619-6EF3-4996-A166-90812A725111/httpconf
+keep-alive-timeout 5
+toggle 1
+socket-timeout 300
+enable-proxy-authentication-forwarding 0
+#mmdbpath /private/var/mobile/Containers/Shared/AppGroup/472DA619-6EF3-4996-A166-90812A725111/GeoLite2-Country.mmdb
+#logdir /private/var/mobile/Containers/Shared/AppGroup/472DA619-6EF3-4996-A166-90812A725111/log
+global-mode 0
+tolerate-pipelining 1
+#actionsfile /private/var/mobile/Containers/Shared/AppGroup/472DA619-6EF3-4996-A166-90812A725111/httpconf/potatso.action
+#templdir /private/var/mobile/Containers/Shared/AppGroup/472DA619-6EF3-4996-A166-90812A725111/httptemplate
+listen-address 127.0.0.1:0
+buffer-limit 512
+split-large-forms 0
+enable-remote-http-toggle 0
+accept-intercepted-requests 0
+allow-cgi-request-crunching 0
+enable-edit-actions 0

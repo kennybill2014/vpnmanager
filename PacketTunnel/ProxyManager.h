@@ -29,4 +29,7 @@ extern int sock_port (int fd);
 - (void)stopHttpProxy;
 - (void)startShadowsocks: (ShadowsocksProxyCompletion)completion;
 - (void)stopShadowsocks;
+
+- (void)testMMWormhole;
+
 @end

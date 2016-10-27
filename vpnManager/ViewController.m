@@ -12,10 +12,27 @@
 #include "expat.h"
 #include <stdio.h>
 #include <string.h>
+// 判断网络状态
+#include <ifaddrs.h>
+#include <sys/socket.h>
+#include <sys/sysctl.h>
+#import <arpa/inet.h>
+#include <net/if.h>
+
+#import "MMWormhole.h"
+
+#define IOS_CELLULAR    @"pdp_ip0"
+#define IOS_WIFI        @"en0"
+#define IOS_VPN         @"utun0"
+#define IP_ADDR_IPv4    @"ipv4"
+#define IP_ADDR_IPv6    @"ipv6"
+#define IP_MASK_IPv4    @"mask_ipv4"
+#define IP_MASK_IPv6    @"mask_ipv6"
 
 @interface ViewController ()
 
 @property(strong,nonatomic) NETunnelProviderManager *manager;
+@property (nonatomic) MMWormhole *wormhole;
 
 @end
 
@@ -25,7 +42,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self checkXML];
-
+    self.wormhole = [[MMWormhole alloc] initWithApplicationGroupIdentifier:@"group.360.freewifi" optionalDirectory:@"wormhole"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,7 +73,7 @@
 }
 
 - (IBAction)onBtnAction:(id)sender {
-    [self checkXML];
+//    [self checkXML];
     
     [NETunnelProviderManager loadAllFromPreferencesWithCompletionHandler:^(NSArray* newManagers, NSError *error) {
         NSLog(@"Managers %@", newManagers);
@@ -86,6 +103,75 @@
             }];
         }];
     }];
+
+}
+
+
+- (NSDictionary *)getIPAddresses
+{
+    NSMutableDictionary *addresses = [NSMutableDictionary dictionaryWithCapacity:8];
+    
+    // retrieve the current interfaces - returns 0 on success
+    struct ifaddrs *interfaces;
+    if(!getifaddrs(&interfaces)) {
+        // Loop through linked list of interfaces
+        struct ifaddrs *interface;
+        for(interface=interfaces; interface; interface=interface->ifa_next) {
+            if(!(interface->ifa_flags & IFF_UP) /* || (interface->ifa_flags & IFF_LOOPBACK) */ ) {
+                continue; // deeply nested code harder to read
+            }
+            const struct sockaddr_in *addr = (const struct sockaddr_in*)interface->ifa_addr;
+            char addrBuf[ MAX(INET_ADDRSTRLEN, INET6_ADDRSTRLEN) ];
+            if(addr && (addr->sin_family==AF_INET || addr->sin_family==AF_INET6)) {
+                NSString *name = [NSString stringWithUTF8String:interface->ifa_name];
+                NSString *type;
+                if(addr->sin_family == AF_INET) {
+                    if(inet_ntop(AF_INET, &addr->sin_addr, addrBuf, INET_ADDRSTRLEN)) {
+                        type = IP_ADDR_IPv4;
+                    }
+                } else {
+                    const struct sockaddr_in6 *addr6 = (const struct sockaddr_in6*)interface->ifa_addr;
+                    if(inet_ntop(AF_INET6, &addr6->sin6_addr, addrBuf, INET6_ADDRSTRLEN)) {
+                        type = IP_ADDR_IPv6;
+                    }
+                }
+                if(type) {
+                    NSString *key = [NSString stringWithFormat:@"%@/%@", name, type];
+                    addresses[key] = [NSString stringWithUTF8String:addrBuf];
+                }
+            }
+            
+            const struct sockaddr_in *netmask = (const struct sockaddr_in *)interface->ifa_netmask;
+            if(netmask && (netmask->sin_family == AF_INET || netmask->sin_family == AF_INET6)) {
+                NSString *name = [NSString stringWithUTF8String:interface->ifa_name];
+                NSString *type = nil;
+                if (netmask->sin_family == AF_INET) {
+                    if(inet_ntop(AF_INET, &netmask->sin_addr, addrBuf, INET_ADDRSTRLEN)) {
+                        type = IP_MASK_IPv4;
+                    }
+                } else {
+                    const struct sockaddr_in6 *netmask = (const struct sockaddr_in6 *)interface->ifa_netmask;
+                    if(inet_ntop(AF_INET6, &netmask->sin6_addr, addrBuf, INET6_ADDRSTRLEN)) {
+                        type = IP_MASK_IPv6;
+                    }
+                }
+                if (type) {
+                    NSString *key = [NSString stringWithFormat:@"%@/%@", name, type];
+                    addresses[key] = [NSString stringWithUTF8String: addrBuf];
+                }
+            }
+        }
+        // Free memory
+        freeifaddrs(interfaces);
+    }
+    return [addresses count] ? addresses : nil;
+}
+
+- (IBAction)getiplist:(id)sender {
+//    NSDictionary* ipList = [self getIPAddresses];
+//    NSLog(@"%@",ipList);
+//    wormhole.passMessageObject("", identifier: "getTunnelConnectionRecords")
+    [self.wormhole passMessageObject:@"" identifier:@"getTunnelConnectionRecords"];
 
 }
 

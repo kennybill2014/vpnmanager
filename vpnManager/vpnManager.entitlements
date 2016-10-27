@@ -10,7 +10,7 @@
 	</array>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.360.freewifi</string>
+		<string>group.com.vpn.agent</string>
 	</array>
 </dict>
 </plist>
