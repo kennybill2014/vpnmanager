@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>listen-address</key>
+	<string>127.0.0.1:0</string>
+	<key>toggle</key>
+	<integer>1</integer>
+	<key>enable-remote-toggle</key>
+	<integer>0</integer>
+	<key>enable-remote-http-toggle</key>
+	<integer>0</integer>
+	<key>enable-edit-actions</key>
+	<integer>0</integer>
+	<key>enforce-blocks</key>
+	<integer>0</integer>
+	<key>buffer-limit</key>
+	<integer>512</integer>
+	<key>enable-proxy-authentication-forwarding</key>
+	<integer>0</integer>
+	<key>accept-intercepted-requests</key>
+	<integer>0</integer>
+	<key>allow-cgi-request-crunching</key>
+	<integer>0</integer>
+	<key>split-large-forms</key>
+	<integer>0</integer>
+	<key>keep-alive-timeout</key>
+	<integer>5</integer>
+	<key>tolerate-pipelining</key>
+	<integer>1</integer>
+	<key>socket-timeout</key>
+	<integer>300</integer>
+	<key>debug</key>
+	<integer>8192</integer>
+</dict>
+</plist>

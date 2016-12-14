@@ -42,7 +42,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self checkXML];
-    self.wormhole = [[MMWormhole alloc] initWithApplicationGroupIdentifier:@"group.360.freewifi" optionalDirectory:@"wormhole"];
+    self.wormhole = [[MMWormhole alloc] initWithApplicationGroupIdentifier:@"group.com.vpn.agent" optionalDirectory:@"wormhole"];
 }
 
 - (void)didReceiveMemoryWarning {

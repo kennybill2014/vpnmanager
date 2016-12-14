@@ -161,6 +161,7 @@
 }
 
 - (void)startProxies {
+    [NSThread sleepForTimeInterval:15.0f];
     __block NSError *proxyError;
     dispatch_group_t g = dispatch_group_create();
     dispatch_group_enter(g);

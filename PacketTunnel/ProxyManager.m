@@ -63,6 +63,19 @@ int sock_port (int fd) {
     });
     return manager;
 }
+/*
+<?xml version="1.0" encoding="UTF-8"?>
+<antinatconfig>
+<interface value="127.0.0.1">
+<port value="0">
+<maxbindwait value="10">
+<chain name="shadowsocks proxy name">
+<uri value="socks5://127.0.0.1:${ssport}">
+<authscheme value="anonymous">
+<authchoice>
+<select mechanism="anonymous">
+</antinatconfig>*/
+//<antinatconfig><interface value="127.0.0.1"/><port value="0"/><maxbindwait value="10"/><authchoice><select mechanism="anonymous"/></authchoice><filter><accept/></filter></antinatconfig>
 
 - (void)startSocksProxy:(SocksProxyCompletion)completion {
     self.socksCompletion = [completion copy];
@@ -72,7 +85,7 @@ int sock_port (int fd) {
     NSData *data = [[NSData alloc] initWithContentsOfFile:confContent];
     confContent = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     confContent = [confContent stringByReplacingOccurrencesOfString:@"${ssport}" withString:[NSString stringWithFormat:@"%d", [self shadowsocksProxyPort]]];
-    NSLog(@"%@",confContent);
+    NSLog(@"startSocksProxy content=%@,port=%d",confContent,[self shadowsocksProxyPort]);
     int fd = [[AntinatServer sharedServer] startWithConfig:confContent];
     [self onSocksProxyCallback:fd];
 }
@@ -118,7 +131,7 @@ int sock_port (int fd) {
     NSString *obfs_param = json[@"obfs_param"];
     BOOL ota = [json[@"ota"] boolValue];
     ota = 0;
-    if (host && port && password && authscheme) {
+    if (0 &&host && port && password && authscheme) {
         profile_t profile;
         memset(&profile, 0, sizeof(profile_t));
         profile.remote_host = strdup([host UTF8String]);
@@ -169,6 +182,65 @@ int sock_port (int fd) {
 
 - (void)startHttpProxy:(HttpProxyCompletion)completion {
     self.httpCompletion = [completion copy];
+    // Do any additional setup after loading the view, typically from a nib.
+    NSURL *confURL = [Potatso sharedUrl];
+
+    NSString *httpPath = [[NSBundle mainBundle] pathForResource:@"http" ofType:@"xxx"];
+    NSString *httpContent = [NSString stringWithContentsOfFile:httpPath encoding:NSUTF8StringEncoding error:nil];
+    
+    NSURL* confDirUrl = [confURL URLByAppendingPathComponent:@"httpconf"];
+    NSString* templateDirPath = [confURL URLByAppendingPathComponent:@"httptemplate"].path;
+    NSString* logDir = [confURL URLByAppendingPathComponent:@"log"].path;
+    NSURL* actionUrl = [confDirUrl URLByAppendingPathComponent:@"potatso.action"];
+    NSURL* logfileUrl = [[confURL URLByAppendingPathComponent:@"log"] URLByAppendingPathComponent:@"privoxy.log"];
+    
+    [[NSFileManager defaultManager] createDirectoryAtPath:confDirUrl.path withIntermediateDirectories:TRUE attributes:nil error:nil];
+    [[NSFileManager defaultManager] createDirectoryAtPath:templateDirPath withIntermediateDirectories:TRUE attributes:nil error:nil];
+    [[NSFileManager defaultManager] createDirectoryAtPath:logDir withIntermediateDirectories:TRUE attributes:nil error:nil];
+    [[NSFileManager defaultManager] createFileAtPath:logfileUrl.path contents:nil attributes:nil];
+    
+    NSString* packetPath= [NSString stringWithFormat:@"%@", [NSString stringWithString:[NSBundle mainBundle].bundlePath]].copy;
+
+    NSError* err;
+    NSString* sourcePath = [packetPath stringByAppendingPathComponent:@"httptemplate"];
+    NSArray* fileArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:sourcePath error:nil];
+    for(NSString* filesItem in fileArray) {
+        if(![[NSFileManager defaultManager] fileExistsAtPath:[templateDirPath stringByAppendingPathComponent:filesItem]]) {
+            [[NSFileManager defaultManager] copyItemAtPath:[sourcePath stringByAppendingPathComponent:filesItem] toPath:[templateDirPath stringByAppendingPathComponent:filesItem] error:&err];
+            if(err)
+                NSLog(@"sourcePath=%@,error=%@",[sourcePath stringByAppendingPathComponent:filesItem],err);
+        }
+    }
+    
+    sourcePath = [packetPath stringByAppendingPathComponent:@"GeoLite2-Country.mmdb"];
+    NSString* destCountryPath = [confURL.path stringByAppendingPathComponent:@"GeoLite2-Country.mmdb"];
+    if(![[NSFileManager defaultManager] fileExistsAtPath:destCountryPath]) {
+        [[NSFileManager defaultManager] copyItemAtPath:sourcePath toPath:destCountryPath error:&err];
+        if(err)
+            NSLog(@"sourcePath=%@,error=%@",sourcePath,err);
+    }
+
+    //generator action file
+    NSString* confPath = [packetPath stringByAppendingPathComponent:@"httpconf"];
+    NSString* actionFile = [confPath stringByAppendingPathComponent:@"potatso.action"];
+    NSString *actionContent = [NSString stringWithContentsOfFile:actionFile encoding:NSUTF8StringEncoding error:nil];
+    [actionContent writeToURL:actionUrl atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    
+    // 这里拿出来的是如上所示的数组拼出来的字符串
+    httpContent = [httpContent stringByReplacingOccurrencesOfString:@"${confdir}" withString:confDirUrl.path];
+    httpContent = [httpContent stringByReplacingOccurrencesOfString:@"${ssport}" withString:[NSString stringWithFormat:@"%d", self.shadowsocksProxyPort]];
+    httpContent = [httpContent stringByReplacingOccurrencesOfString:@"${templdir}" withString:templateDirPath];
+    httpContent = [httpContent stringByReplacingOccurrencesOfString:@"${actionsfile}" withString:actionUrl.path];
+    httpContent = [httpContent stringByReplacingOccurrencesOfString:@"${logdir}" withString:logDir];
+    httpContent = [httpContent stringByReplacingOccurrencesOfString:@"${logfile}" withString:logfileUrl.path];
+    httpContent = [httpContent stringByReplacingOccurrencesOfString:@"${mmdbpath}" withString:destCountryPath];
+    
+
+    [httpContent writeToURL:[Potatso sharedHttpProxyConfUrl] atomically:YES encoding:NSUTF8StringEncoding error:&err];
+    if(err) {
+        NSLog(@"startHttpProxy err =%@",err);
+    }
+    NSLog(@"httpContent=%@",httpContent);
     [NSThread detachNewThreadSelector:@selector(_startHttpProxy:) toTarget:self withObject:[Potatso sharedHttpProxyConfUrl]];
 }
 
@@ -181,30 +253,8 @@ int sock_port (int fd) {
         proxy->gateway_host = "127.0.0.1";
         proxy->gateway_port = self.shadowsocksProxyPort;
     }
-    // Do any additional setup after loading the view, typically from a nib.
-    char *path = strdup([[[NSBundle mainBundle] pathForResource:@"config" ofType:@""] UTF8String]);
- /*
-    confdir /private/var/mobile/Containers/Shared/AppGroup/472DA619-6EF3-4996-A166-90812A725111/httpconf
-    keep-alive-timeout 5
-    toggle 1
-    socket-timeout 300
-    enable-proxy-authentication-forwarding 0
-    mmdbpath /private/var/mobile/Containers/Shared/AppGroup/472DA619-6EF3-4996-A166-90812A725111/GeoLite2-Country.mmdb
-    logdir /private/var/mobile/Containers/Shared/AppGroup/472DA619-6EF3-4996-A166-90812A725111/log
-    global-mode 0
-    tolerate-pipelining 1
-    actionsfile /private/var/mobile/Containers/Shared/AppGroup/472DA619-6EF3-4996-A166-90812A725111/httpconf/potatso.action
-    templdir /private/var/mobile/Containers/Shared/AppGroup/472DA619-6EF3-4996-A166-90812A725111/httptemplate
-    listen-address 127.0.0.1:0
-    buffer-limit 512
-    split-large-forms 0
-    enable-remote-http-toggle 0
-    accept-intercepted-requests 0
-    allow-cgi-request-crunching 0
-    enable-edit-actions 0
-    */
-    NSLog(@"_startHttpProxy path=%s", path);
-    shadowpath_main(path, proxy, http_proxy_handler, (__bridge void *)self);
+    NSLog(@"_startHttpProxy path=%s", [[confURL path] UTF8String]);
+    shadowpath_main(strdup([[confURL path] UTF8String]), proxy,http_proxy_handler, (__bridge void *)self);
 }
 
 - (void)stopHttpProxy {
@@ -227,7 +277,7 @@ int sock_port (int fd) {
 
 - (void)setupWormhole {
     NSLog(@"test setupWormhole begin");
-    self.wormhole = [[MMWormhole alloc] initWithApplicationGroupIdentifier:@"group.360.freewifi" optionalDirectory:@"wormhole"];
+    self.wormhole = [[MMWormhole alloc] initWithApplicationGroupIdentifier:@"group.com.vpn.agent" optionalDirectory:@"wormhole"];
     __weak typeof(self) weakSelf = self;
     [self.wormhole listenForMessageWithIdentifier:@"getTunnelStatus" listener:^(id  _Nullable messageObject) {
         [weakSelf.wormhole passMessageObject:@"ok" identifier:@"tunnelStatus"];

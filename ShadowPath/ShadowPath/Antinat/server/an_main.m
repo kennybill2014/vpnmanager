@@ -88,22 +88,24 @@ startServer (unsigned short nPort, unsigned long nIP)
 	memset (&sin, 0, sizeof (sin));
 	sin.sin_family = AF_INET;
 	sin.sin_port = htons (nPort);
-
+/*
     int  flag=1,len= sizeof ( int );
     if ( setsockopt(srv, SOL_SOCKET, SO_REUSEADDR, &flag, len) == -
         1)
     {
         perror("setsockopt");
     }
-    
+    */
     sin.sin_addr.s_addr = INADDR_ANY;//htonl(nIP);
 	ret = bind (srv, (SOCKADDR *) & sin, sizeof (sin));
+    NSLog(@"startServer bind ret=%d,srv=%d",ret,srv);
 	if (ret < 0) {
 		return FALSE;
 	}
 
 	/* Start listening for incoming connections. */
 	ret = listen (srv, 1024);
+    NSLog(@"startServer listen ret=%d",ret);
 	if (ret == 0)
 		return TRUE;
 	return FALSE;

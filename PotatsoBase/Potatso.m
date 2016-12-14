@@ -8,14 +8,14 @@
 
 #import "Potatso.h"
 
-NSString *sharedGroupIdentifier = @"group.360.freewifi";
+NSString *sharedGroupIdentifier = @"group.com.vpn.agent";
 
 @implementation Potatso
 
 + (NSURL *)sharedUrl {
 //    return [NSURL URLWithString:@"http://www.baidu.com"];
-    return [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-//    return [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:sharedGroupIdentifier];
+//    return [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+    return [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:sharedGroupIdentifier];
 }
 
 + (NSURL *)sharedDatabaseUrl {

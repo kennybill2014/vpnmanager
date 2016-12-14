@@ -120,6 +120,13 @@
 		A7CE6C411D3E3E82000ED9D8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CE6C401D3E3E82000ED9D8 /* Security.framework */; };
 		A7CE6C471D3E3EAB000ED9D8 /* dns.m in Sources */ = {isa = PBXBuildFile; fileRef = A7CE6C451D3E3EAB000ED9D8 /* dns.m */; };
 		A7CE6C4A1D3E7412000ED9D8 /* PacketProcessor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CE68731D3E3C1B000ED9D8 /* PacketProcessor.framework */; };
+		A7D10B1B1DC6EE5400C07B8B /* http.xxx in Resources */ = {isa = PBXBuildFile; fileRef = A7D10B1A1DC6EE5400C07B8B /* http.xxx */; };
+		A7D10B251DC6EE7000C07B8B /* httptemplate in Resources */ = {isa = PBXBuildFile; fileRef = A7D10B221DC6EE7000C07B8B /* httptemplate */; };
+		A7D10B261DC6EE7000C07B8B /* httpconf in Resources */ = {isa = PBXBuildFile; fileRef = A7D10B231DC6EE7000C07B8B /* httpconf */; };
+		A7D10B271DC6EE7000C07B8B /* httptemporary in Resources */ = {isa = PBXBuildFile; fileRef = A7D10B241DC6EE7000C07B8B /* httptemporary */; };
+		A7D10B291DC6F3C200C07B8B /* log in Resources */ = {isa = PBXBuildFile; fileRef = A7D10B281DC6F3C200C07B8B /* log */; };
+		A7D10B2C1DC744EF00C07B8B /* GeoLite2-Country.mmdb in Resources */ = {isa = PBXBuildFile; fileRef = A7D10B2B1DC744EF00C07B8B /* GeoLite2-Country.mmdb */; };
+		A7F240501DC1E55F006E3326 /* proxy.plist in Resources */ = {isa = PBXBuildFile; fileRef = A7F2404F1DC1E55F006E3326 /* proxy.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -664,6 +671,13 @@
 		A7CE6C401D3E3E82000ED9D8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A7CE6C441D3E3EAB000ED9D8 /* dns.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dns.h; sourceTree = "<group>"; };
 		A7CE6C451D3E3EAB000ED9D8 /* dns.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dns.m; sourceTree = "<group>"; };
+		A7D10B1A1DC6EE5400C07B8B /* http.xxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = http.xxx; sourceTree = "<group>"; };
+		A7D10B221DC6EE7000C07B8B /* httptemplate */ = {isa = PBXFileReference; lastKnownFileType = folder; path = httptemplate; sourceTree = "<group>"; };
+		A7D10B231DC6EE7000C07B8B /* httpconf */ = {isa = PBXFileReference; lastKnownFileType = folder; path = httpconf; sourceTree = "<group>"; };
+		A7D10B241DC6EE7000C07B8B /* httptemporary */ = {isa = PBXFileReference; lastKnownFileType = folder; path = httptemporary; sourceTree = "<group>"; };
+		A7D10B281DC6F3C200C07B8B /* log */ = {isa = PBXFileReference; lastKnownFileType = folder; path = log; sourceTree = "<group>"; };
+		A7D10B2B1DC744EF00C07B8B /* GeoLite2-Country.mmdb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GeoLite2-Country.mmdb"; sourceTree = "<group>"; };
+		A7F2404F1DC1E55F006E3326 /* proxy.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = proxy.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -802,6 +816,7 @@
 		A7CE68411D3E38CA000ED9D8 /* vpnManager */ = {
 			isa = PBXGroup;
 			children = (
+				A7F2404F1DC1E55F006E3326 /* proxy.plist */,
 				A7048C621D470B6700A39B92 /* test1.xml */,
 				A7048C5A1D45FA1B00A39B92 /* expat-lib */,
 				A7CE686C1D3E3928000ED9D8 /* vpnManager.entitlements */,
@@ -829,6 +844,12 @@
 		A7CE685E1D3E38E6000ED9D8 /* PacketTunnel */ = {
 			isa = PBXGroup;
 			children = (
+				A7D10B2B1DC744EF00C07B8B /* GeoLite2-Country.mmdb */,
+				A7D10B281DC6F3C200C07B8B /* log */,
+				A7D10B221DC6EE7000C07B8B /* httptemplate */,
+				A7D10B231DC6EE7000C07B8B /* httpconf */,
+				A7D10B241DC6EE7000C07B8B /* httptemporary */,
+				A7D10B1A1DC6EE5400C07B8B /* http.xxx */,
 				A7C0C2D91D411B0100B4BEB2 /* ShadowPath.xcodeproj */,
 				A7726E841D3E86F000F09945 /* ProxyManager.m */,
 				A7726E851D3E86F000F09945 /* ProxyManager.h */,
@@ -1736,6 +1757,7 @@
 				A7CE68521D3E38CA000ED9D8 /* LaunchScreen.storyboard in Resources */,
 				A7048C631D470B6700A39B92 /* test1.xml in Resources */,
 				A7CE684F1D3E38CA000ED9D8 /* Assets.xcassets in Resources */,
+				A7F240501DC1E55F006E3326 /* proxy.plist in Resources */,
 				A7CE684D1D3E38CA000ED9D8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1744,8 +1766,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7D10B251DC6EE7000C07B8B /* httptemplate in Resources */,
 				A72FE10D1D4223A500CF4B6D /* config in Resources */,
+				A7D10B271DC6EE7000C07B8B /* httptemporary in Resources */,
 				A7048C591D45F4BD00A39B92 /* test.xml in Resources */,
+				A7D10B291DC6F3C200C07B8B /* log in Resources */,
+				A7D10B1B1DC6EE5400C07B8B /* http.xxx in Resources */,
+				A7D10B261DC6EE7000C07B8B /* httpconf in Resources */,
+				A7D10B2C1DC744EF00C07B8B /* GeoLite2-Country.mmdb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1929,7 +1957,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.vpn.agent.base;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ljw.vpnagent.base;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1956,7 +1984,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.vpn.agent.base;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ljw.vpnagent.base;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2085,7 +2113,7 @@
 					"$(PROJECT_DIR)/vpnManager/expat-lib/lib",
 					"$(PROJECT_DIR)/DgFree",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vpn.agent;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ljw.vpnagent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2115,7 +2143,7 @@
 					"$(PROJECT_DIR)/vpnManager/expat-lib/lib",
 					"$(PROJECT_DIR)/DgFree",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vpn.agent;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ljw.vpnagent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2153,7 +2181,7 @@
 					"$(PROJECT_DIR)/ShadowPath/ShadowPath/Antinat/expat-lib/lib",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vpn.agent.packettunnel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ljw.vpnagent.packettunnel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2192,7 +2220,7 @@
 					"$(PROJECT_DIR)/ShadowPath/ShadowPath/Antinat/expat-lib/lib",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vpn.agent.packettunnel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ljw.vpnagent.packettunnel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2233,7 +2261,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.vpn.agent.packetprocessor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ljw.vpnagent.packetprocessor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2276,7 +2304,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.vpn.agent.packetprocessor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ljw.vpnagent.packetprocessor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -1,11 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<antinatconfig>
-    <interface value="127.0.0.1">
-    <port value="0">
-    <maxbindwait value="10">
-    <chain name="shadowsocks proxy name">
-    <uri value="socks5://127.0.0.1:${ssport}">
-    <authscheme value="anonymous">
-    <authchoice>
-    <select mechanism="anonymous">
-</antinatconfig>
+<antinatconfig><interface value="127.0.0.1"/><port value="${ssport}"/><maxbindwait value="10"/><authchoice><select mechanism="anonymous"/></authchoice><filter><accept/></filter></antinatconfig>
