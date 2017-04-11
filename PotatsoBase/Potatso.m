@@ -8,7 +8,7 @@
 
 #import "Potatso.h"
 
-NSString *sharedGroupIdentifier = @"group.com.vpn.agent";
+NSString *sharedGroupIdentifier = @"group.360.vpnagent";
 
 @implementation Potatso
 
