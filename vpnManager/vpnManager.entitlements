@@ -10,7 +10,7 @@
 	</array>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.vpn.agent</string>
+		<string>group.360.vpnagent</string>
 	</array>
 </dict>
 </plist>

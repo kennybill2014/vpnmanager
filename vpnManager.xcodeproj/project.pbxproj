@@ -13,6 +13,8 @@
 		A7048C681D4F4A8700A39B92 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7048C671D4F4A8700A39B92 /* CoreFoundation.framework */; };
 		A72FE10D1D4223A500CF4B6D /* config in Resources */ = {isa = PBXBuildFile; fileRef = A72FE10C1D4223A500CF4B6D /* config */; };
 		A7726E861D3E86F000F09945 /* ProxyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7726E841D3E86F000F09945 /* ProxyManager.m */; };
+		A7A609F41E9CA89900EDB882 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7A609F31E9CA89900EDB882 /* NetworkExtension.framework */; };
+		A7A609F51E9CA89F00EDB882 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7A609F31E9CA89900EDB882 /* NetworkExtension.framework */; };
 		A7AF6B651D3E79ED00C58725 /* PotatsoBase.h in Headers */ = {isa = PBXBuildFile; fileRef = A7AF6B641D3E79ED00C58725 /* PotatsoBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7AF6B691D3E79ED00C58725 /* PotatsoBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7AF6B621D3E79ED00C58725 /* PotatsoBase.framework */; };
 		A7AF6B6A1D3E79ED00C58725 /* PotatsoBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A7AF6B621D3E79ED00C58725 /* PotatsoBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -205,6 +207,7 @@
 		A72FE10C1D4223A500CF4B6D /* config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = config; path = ../ShadowPath/ShadowPathDemo/config; sourceTree = "<group>"; };
 		A7726E841D3E86F000F09945 /* ProxyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProxyManager.m; sourceTree = "<group>"; };
 		A7726E851D3E86F000F09945 /* ProxyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProxyManager.h; sourceTree = "<group>"; };
+		A7A609F31E9CA89900EDB882 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		A7AF6B621D3E79ED00C58725 /* PotatsoBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PotatsoBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7AF6B641D3E79ED00C58725 /* PotatsoBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PotatsoBase.h; sourceTree = "<group>"; };
 		A7AF6B661D3E79ED00C58725 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -695,6 +698,7 @@
 				A7048C681D4F4A8700A39B92 /* CoreFoundation.framework in Frameworks */,
 				A7CE6C411D3E3E82000ED9D8 /* Security.framework in Frameworks */,
 				A7CE6C3F1D3E3E7D000ED9D8 /* SystemConfiguration.framework in Frameworks */,
+				A7A609F51E9CA89F00EDB882 /* NetworkExtension.framework in Frameworks */,
 				A7048C611D45FA1B00A39B92 /* libexpat.a in Frameworks */,
 				A7AF6B691D3E79ED00C58725 /* PotatsoBase.framework in Frameworks */,
 				A7CE6C3D1D3E3E70000ED9D8 /* libresolv.9.tbd in Frameworks */,
@@ -709,6 +713,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7C0C2E31D411B9900B4BEB2 /* ShadowPath.framework in Frameworks */,
+				A7A609F41E9CA89900EDB882 /* NetworkExtension.framework in Frameworks */,
 				A7AF6B7A1D3E7A5200C58725 /* PotatsoBase.framework in Frameworks */,
 				A7CE6C4A1D3E7412000ED9D8 /* PacketProcessor.framework in Frameworks */,
 				A7CE6C3A1D3E3E53000ED9D8 /* CocoaAsyncSocket.framework in Frameworks */,
@@ -761,6 +766,14 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		A7A609F21E9CA89900EDB882 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A7A609F31E9CA89900EDB882 /* NetworkExtension.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A7AF6B631D3E79ED00C58725 /* PotatsoBase */ = {
 			isa = PBXGroup;
 			children = (
@@ -799,6 +812,7 @@
 				A7CE68741D3E3C1B000ED9D8 /* PacketProcessor */,
 				A7AF6B631D3E79ED00C58725 /* PotatsoBase */,
 				A7CE68401D3E38CA000ED9D8 /* Products */,
+				A7A609F21E9CA89900EDB882 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1667,17 +1681,17 @@
 		A7CE68371D3E38CA000ED9D8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = ljw;
 				TargetAttributes = {
 					A7AF6B611D3E79ED00C58725 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = SN4R88999J;
+						DevelopmentTeam = 24SE6ECXX7;
 						ProvisioningStyle = Automatic;
 					};
 					A7CE683E1D3E38CA000ED9D8 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = SN4R88999J;
+						DevelopmentTeam = 24SE6ECXX7;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -1690,7 +1704,7 @@
 					};
 					A7CE685C1D3E38E6000ED9D8 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = SN4R88999J;
+						DevelopmentTeam = 24SE6ECXX7;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -1700,7 +1714,7 @@
 					};
 					A7CE68721D3E3C1B000ED9D8 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = SN4R88999J;
+						DevelopmentTeam = 24SE6ECXX7;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1949,7 +1963,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = SN4R88999J;
+				DEVELOPMENT_TEAM = 24SE6ECXX7;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1957,7 +1971,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ljw.vpnagent.base;
+				PRODUCT_BUNDLE_IDENTIFIER = com.360.vpnagent.base;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1976,7 +1990,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = SN4R88999J;
+				DEVELOPMENT_TEAM = 24SE6ECXX7;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1984,7 +1998,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ljw.vpnagent.base;
+				PRODUCT_BUNDLE_IDENTIFIER = com.360.vpnagent.base;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2094,7 +2108,7 @@
 				CODE_SIGN_ENTITLEMENTS = vpnManager/vpnManager.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = SN4R88999J;
+				DEVELOPMENT_TEAM = 24SE6ECXX7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2113,7 +2127,7 @@
 					"$(PROJECT_DIR)/vpnManager/expat-lib/lib",
 					"$(PROJECT_DIR)/DgFree",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ljw.vpnagent;
+				PRODUCT_BUNDLE_IDENTIFIER = com.360.vpnagent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2128,7 +2142,7 @@
 				CODE_SIGN_ENTITLEMENTS = vpnManager/vpnManager.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = SN4R88999J;
+				DEVELOPMENT_TEAM = 24SE6ECXX7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2143,7 +2157,7 @@
 					"$(PROJECT_DIR)/vpnManager/expat-lib/lib",
 					"$(PROJECT_DIR)/DgFree",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ljw.vpnagent;
+				PRODUCT_BUNDLE_IDENTIFIER = com.360.vpnagent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2157,7 +2171,7 @@
 				CODE_SIGN_ENTITLEMENTS = PacketTunnel/PacketTunnel.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = SN4R88999J;
+				DEVELOPMENT_TEAM = 24SE6ECXX7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2181,7 +2195,7 @@
 					"$(PROJECT_DIR)/ShadowPath/ShadowPath/Antinat/expat-lib/lib",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ljw.vpnagent.packettunnel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.360.vpnagent.packettunnel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2196,7 +2210,7 @@
 				CODE_SIGN_ENTITLEMENTS = PacketTunnel/PacketTunnel.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = SN4R88999J;
+				DEVELOPMENT_TEAM = 24SE6ECXX7;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2220,7 +2234,7 @@
 					"$(PROJECT_DIR)/ShadowPath/ShadowPath/Antinat/expat-lib/lib",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ljw.vpnagent.packettunnel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.360.vpnagent.packettunnel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2236,7 +2250,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = SN4R88999J;
+				DEVELOPMENT_TEAM = 24SE6ECXX7;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2261,7 +2275,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ljw.vpnagent.packetprocessor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.360.vpnagent.packetprocessor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2280,7 +2294,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = SN4R88999J;
+				DEVELOPMENT_TEAM = 24SE6ECXX7;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2304,7 +2318,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ljw.vpnagent.packetprocessor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.360.vpnagent.packetprocessor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
